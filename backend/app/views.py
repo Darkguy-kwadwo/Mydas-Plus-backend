@@ -1,8 +1,10 @@
-from rest_framework import viewsets, filters
+from rest_framework import filters, viewsets
 from rest_framework.decorators import api_view
+from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
 from rest_framework.response import Response
 
 from .models import Agent, BlogPost, Property, Testimonial
+from .permissions import IsStaffOrReadOnly
 from .serializers import (
     AgentSerializer,
     BlogPostSerializer,
@@ -23,8 +25,10 @@ PROPERTY_CATEGORIES = [
 CITIES = ['Accra', 'Tema', 'Kumasi', 'Sekondi-Takoradi', 'Cape Coast']
 
 
-class PropertyViewSet(viewsets.ReadOnlyModelViewSet):
+class PropertyViewSet(viewsets.ModelViewSet):
     serializer_class = PropertySerializer
+    permission_classes = [IsStaffOrReadOnly]
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['title', 'description', 'location', 'city', 'type']
     ordering_fields = ['price', 'posted_date', 'area']
@@ -72,21 +76,27 @@ class PropertyViewSet(viewsets.ReadOnlyModelViewSet):
         return qs
 
 
-class AgentViewSet(viewsets.ReadOnlyModelViewSet):
+class AgentViewSet(viewsets.ModelViewSet):
     queryset = Agent.objects.all()
     serializer_class = AgentSerializer
+    permission_classes = [IsStaffOrReadOnly]
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
 
 
-class BlogPostViewSet(viewsets.ReadOnlyModelViewSet):
+class BlogPostViewSet(viewsets.ModelViewSet):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
+    permission_classes = [IsStaffOrReadOnly]
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
     filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'excerpt', 'content', 'category', 'author']
 
 
-class TestimonialViewSet(viewsets.ReadOnlyModelViewSet):
+class TestimonialViewSet(viewsets.ModelViewSet):
     queryset = Testimonial.objects.all()
     serializer_class = TestimonialSerializer
+    permission_classes = [IsStaffOrReadOnly]
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
 
 
 @api_view(['GET'])
@@ -112,4 +122,4 @@ def comparable_properties(request, pk):
         .filter(type=property_obj.type)
         .exclude(pk=pk)[:3]
     )
-    return Response(PropertySerializer(comps, many=True).data)
+    return Response(PropertySerializer(comps, many=True, context={'request': request}).data)

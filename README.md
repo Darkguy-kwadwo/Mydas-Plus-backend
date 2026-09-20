@@ -1,6 +1,6 @@
-# Property Finds — Backend (Django)
+# Mydas Plus — Backend (Django)
 
-Self-contained Django API + admin for Property Finds.
+Self-contained Django API + admin for Mydas Plus.
 
 ## Run locally
 

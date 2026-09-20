@@ -1,9 +1,9 @@
-/* Property Finds admin theme */
+/* Mydas Plus admin theme */
 :root {
-  --pf-primary: #5424cb;
-  --pf-primary-dark: #3d1899;
-  --pf-accent: #6e5fe0;
-  --pf-surface: #f7f5ff;
+  --pf-primary: #1f8a3c;
+  --pf-primary-dark: #166b2f;
+  --pf-accent: #d4e84a;
+  --pf-surface: #eef6c9;
 }
 
 #header {

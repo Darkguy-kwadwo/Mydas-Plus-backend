@@ -350,7 +350,7 @@ TESTIMONIALS = [
         'id': 1,
         'name': 'Akosua Baah',
         'role': 'Property Buyer',
-        'content': 'Property Finds made finding my dream home incredibly easy. The AI search feature saved me so much time!',
+        'content': 'Mydas Plus made finding my dream home incredibly easy. The AI search feature saved me so much time!',
         'image': '/testimonials/testimonial-1.png',
         'rating': 5,
     },

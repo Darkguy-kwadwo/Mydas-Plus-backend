@@ -349,7 +349,7 @@ class TestimonialAdmin(admin.ModelAdmin):
         )
 
 
-admin.site.site_header = 'Property Finds Admin'
-admin.site.site_title = 'Property Finds'
+admin.site.site_header = 'Mydas Plus Admin'
+admin.site.site_title = 'Mydas Plus'
 admin.site.index_title = 'Manage your listings'
 admin.site.enable_nav_sidebar = True

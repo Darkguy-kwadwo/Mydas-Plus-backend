@@ -9,6 +9,7 @@ __v0_jsx-dev-runtime.ts
 # Environment variables
 .env*.local
 frontend/.env.local
+data_backup.json
 
 # Frontend
 frontend/node_modules/
