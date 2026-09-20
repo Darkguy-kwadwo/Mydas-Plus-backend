@@ -14,4 +14,4 @@ if Property.objects.count() == 0:
 else:
     print(f'Skipping seed ({Property.objects.count()} properties already exist).')
 PY
-exec gunicorn backend.wsgi:application --bind 0.0.0.0:${PORT:-8000}
+exec python -m gunicorn backend.wsgi:application --bind 0.0.0.0:${PORT:-8000}
